@@ -15,6 +15,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
+
                     System.out.print("Account Number: ");
                     String accNum = sc.nextLine();
                     System.out.print("Account Holder Name: ");
@@ -23,7 +24,7 @@ public class Main {
                     double bal = sc.nextDouble();
                     Account acc = new Account(accNum, accName, bal);
                     accountManager.addAccount(acc);
-                    System.out.println("Account added.");
+                    System.out.println("Account added to " + acc.getBankName() + "." );
                     break;
                 case 2:
                     System.out.print("Account Number: ");

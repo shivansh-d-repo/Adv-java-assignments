@@ -5,7 +5,7 @@ import util.Transaction;
 public class Account extends BankAccount implements Transaction {
     private double balance;
     public static int accountCount = 0;
-    public static final String BANK_NAME = "MyBank";
+    public static final String BANK_NAME = "ICICI BANK";
 
     public Account(String accountNumber, String accountHolderName, double balance) {
         super(accountNumber, accountHolderName);
