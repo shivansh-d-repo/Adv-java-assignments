@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Dashboard</title></head>
+<body>
+<h1>Dashboard</h1>
+<ul>
+    <li>Total employees: <span th:text="${totalEmployees}"></span></li>
+    <li>Total leaves: <span th:text="${totalLeaves}"></span></li>
+    <li>Pending approvals: <span th:text="${pendingLeaves}"></span></li>
+</ul>
+<a href="/employees">Manage Employees</a> |
+<a href="/leaves">Manage Leaves</a>
+</body>
+</html>

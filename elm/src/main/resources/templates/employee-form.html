@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Form</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<h1 th:text="${employee.id == null ? 'Add Employee' : 'Edit Employee'}"></h1>
+
+<!--
+   For "Add": /employees/save (POST)
+   For "Edit": /employees/update/{id} (POST)
+-->
+<form th:action="${employee.id == null} ? @{/employees/save} : @{/employees/update/{id}(id=${employee.id})}"
+      th:object="${employee}"
+      method="post">
+
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}"/>
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" th:field="*{email}"/>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    </div>
+
+    <div>
+        <label for="department">Department</label>
+        <input type="text" id="department" th:field="*{department}"/>
+        <div th:if="${#fields.hasErrors('department')}" th:errors="*{department}"></div>
+    </div>
+
+    <button type="submit">Save</button>
+    <a href="/employees">Cancel</a>
+</form>
+
+</body>
+</html>

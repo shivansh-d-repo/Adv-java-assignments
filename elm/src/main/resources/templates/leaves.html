@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Leaves</title></head>
+<body>
+<h1>Leave Requests</h1>
+<a href="/leaves/new">New Leave Request</a>
+<form method="get" action="/leaves">
+    <label>Employee</label>
+    <select name="employeeId">
+        <option value="">All</option>
+        <option th:each="emp: ${employees}" th:value="${emp.id}" th:text="${emp.name}"></option>
+    </select>
+    <label>Status</label>
+    <select name="status">
+        <option value="">All</option>
+        <option value="PENDING">PENDING</option>
+        <option value="APPROVED">APPROVED</option>
+        <option value="REJECTED">REJECTED</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<table border="1">
+    <thead><tr><th>ID</th><th>Employee</th><th>Type</th><th>Start</th><th>End</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+    <tr th:each="l: ${leaves}">
+        <td th:text="${l.id}"></td>
+        <td th:text="${l.employee.name}"></td>
+        <td th:text="${l.leaveType}"></td>
+        <td th:text="${l.startDate}"></td>
+        <td th:text="${l.endDate}"></td>
+        <td th:text="${l.status}"></td>
+        <td>
+            <a th:if="${l.status.name() == 'PENDING'}" th:href="@{'/leaves/approve/' + ${l.id}}">Approve</a> |
+            <a th:if="${l.status.name() == 'PENDING'}" th:href="@{'/leaves/reject/' + ${l.id}}">Reject</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>
